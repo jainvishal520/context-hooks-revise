@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Component } from "react";
 
-const Navbar = () => {
-    return(
-        <nav>
+class Navbar extends Component {
+  render() {
+    return (
+      <nav>
         <h1>Context App</h1>
         <ul>
           <li>Home</li>
@@ -10,7 +11,8 @@ const Navbar = () => {
           <li>Contact</li>
         </ul>
       </nav>
-    )
+    );
+  }
 }
 
 export default Navbar;
