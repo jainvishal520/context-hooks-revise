@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { v4 } from "uuid";
 import AddNewSong from "./AddNewSong";
 const SongsList = () => {
@@ -12,6 +12,19 @@ const SongsList = () => {
     { title: "this wild darkness", id: 3 },
   ]);
 
+  const [age, setAge] = useState(20);
+  //   useEffect function takes a callback function ... and this callback func runs everytime the component renders or re-renders
+  //   -typically use for calling API end point
+
+  useEffect(() => {
+    console.log("Use effect ran", songs);
+  }, [songs]);
+  // Watcher on songs - Adding songs to array here will only call this callback fn when songs changes and not on age data change
+
+  useEffect(() => {
+    console.log("Use effect ran", age);
+  }, [age]);
+
   const addSongs = (title) => {
     setSongs([...songs, { title, id: v4() }]);
   };
@@ -23,6 +36,7 @@ const SongsList = () => {
         ))}
       </ul>
       <AddNewSong addSongs={addSongs} />
+      <button onClick={() => setAge(age + 1)}>Add 1 to age {age}</button>
     </div>
   );
 };
