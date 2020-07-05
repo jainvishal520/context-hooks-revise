@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { v4 } from "uuid";
+import AddNewSong from "./AddNewSong";
 const SongsList = () => {
   // useState function takes initial state as an argument and returns an array
   // - 1st value is actual data i.e piece of state and 2nd value is a function to edit that state
@@ -11,8 +12,8 @@ const SongsList = () => {
     { title: "this wild darkness", id: 3 },
   ]);
 
-  const addSongs = () => {
-    setSongs([...songs, { title: "new song", id: v4() }]);
+  const addSongs = (title) => {
+    setSongs([...songs, { title, id: v4() }]);
   };
   return (
     <div className="song-list">
@@ -21,7 +22,7 @@ const SongsList = () => {
           <li key={id}>{title}</li>
         ))}
       </ul>
-      <button onClick={addSongs}>Add song</button>
+      <AddNewSong addSongs={addSongs} />
     </div>
   );
 };
