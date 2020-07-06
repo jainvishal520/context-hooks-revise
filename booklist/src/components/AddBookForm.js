@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { BookContext } from "../context/BookContext";
 
 const AddBookForm = () => {
-  const { addBook } = useContext(BookContext);
+  const { dispatch } = useContext(BookContext);
   const [book, setBook] = useState({
     title: "",
     author: "",
@@ -16,7 +16,7 @@ const AddBookForm = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    addBook({ ...book, id: Math.random() });
+    dispatch({ type: "ADD_BOOK", payload: { ...book, id: Math.random() } });
   };
   const { title, author, likes } = book;
   return (
