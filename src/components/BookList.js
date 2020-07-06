@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { AuthContext } from "../contexts/AuthContext";
+import { BookContext } from "../contexts/BookContext";
 // this consumer expects us to pass in a function and has parameter context
 // const BookList = () => {
 //   return (
@@ -39,6 +40,7 @@ const BookList = () => {
   // We can use multiple contexts
   const { isLightTheme, light, dark } = useContext(ThemeContext);
   const { isAuthenticated, toggleAuth } = useContext(AuthContext);
+  const { books } = useContext(BookContext);
   const theme = isLightTheme ? light : dark;
   return (
     <div
@@ -49,9 +51,13 @@ const BookList = () => {
         {isAuthenticated ? "Logged in" : "logged out"}
       </div>
       <ul>
-        <li style={{ background: theme.ui }}>the way of kings</li>
-        <li style={{ background: theme.ui }}>the name of the wind</li>
-        <li style={{ background: theme.ui }}>the final empire</li>
+        {books.map((book) => {
+          return (
+            <li key={book.id} style={{ background: theme.ui }}>
+              {book.title}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
